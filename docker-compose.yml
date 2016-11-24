@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+    es:
+        build: elasticsearch/
+        ports:
+            -   9200:9200
+
+    logstash:
+        image: logstash
