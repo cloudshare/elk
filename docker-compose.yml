@@ -4,7 +4,28 @@ services:
     es:
         build: elasticsearch/
         ports:
-            -   9200:9200
+            - 9200:9200
+        networks:
+            - backend
 
     logstash:
-        image: logstash
+        build: logstash/
+        ports:
+            - 5044:5044
+        networks:
+            - backend
+
+    kibana:
+        image: kibana
+        environment:
+            ELASTICSEARCH_URL: http://es:9200
+        depends_on:
+            - es
+        ports:
+            - 80:5601
+        networks:
+            - backend
+
+networks:
+    backend:
+                            
