@@ -7,6 +7,8 @@ services:
             - 9200:9200
         networks:
             - backend
+        volumes:
+            - es_data:/usr/share/elasticsearch/data
 
     logstash:
         build: logstash/
@@ -25,6 +27,9 @@ services:
             - 5601:5601
         networks:
             - backend
+
+volumes:
+    es_data:
 
 networks:
     backend:
