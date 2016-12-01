@@ -9,6 +9,7 @@ services:
             - backend
         volumes:
             - es_data:/usr/share/elasticsearch/data
+        restart: always
 
     logstash:
         build: logstash/
@@ -16,6 +17,7 @@ services:
             - 5044:5044
         networks:
             - backend
+        restart: always
 
     kibana:
         image: kibana
@@ -27,6 +29,7 @@ services:
             - 5601:5601
         networks:
             - backend
+        restart: always
 
 volumes:
     es_data:
