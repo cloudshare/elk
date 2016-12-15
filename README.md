@@ -31,4 +31,18 @@ Search Query      Logs
      │   (docker)    │    
      └───────────────┘    
 ```
+## LogStash
 
+LogStash is configured to listen for FileBeat traffic on port 5044 (see `logstash/logstash.conf`).
+
+It unpacks the inner JSON log message created by Bunyan.
+
+Finally, it outputs logs into ElasticSearch (on port 9200 locally).
+
+## ElasticSearch
+
+Accepts log records for indexing on port 9200. It runs on the same network as LogStash (called `backend`) so LogStash discovers it by its hostname `es`. See `docker-compose.yml`.
+
+## Kibana
+
+Kibana's UI is accessible via HTTP on port 5601.
